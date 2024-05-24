@@ -1,0 +1,10 @@
+/**
+ * Components: Fonts
+ */
+
+// Google fonts
+// ===========
+// Going back to an import rule instead of hosting the fonts ourselves
+// We are using font-display: swap, for faster load time; https://developers.google.com/web/updates/2016/02/font-display
+// TODO change to brand fonts
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;600&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');

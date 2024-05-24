@@ -1,0 +1,7 @@
+version: 2
+authtoken: ""
+tunnels:
+  colin_mcfaul:
+    proto: http
+    addr: host.docker.internal:8000
+    domain:

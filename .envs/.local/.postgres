@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=colin_mcfaul
+POSTGRES_USER=oaTmZxGFbySxaaRkENMNHgNeYQJGrZYS
+POSTGRES_PASSWORD=6tYBSVwAlEaR5ahXDucX8iSKDCu9Zln75Hfog94FktzENV127PqOXjo76bFHxVj3

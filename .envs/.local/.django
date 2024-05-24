@@ -1,0 +1,21 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
+DATABASE_URL=postgres://!!!SET POSTGRES_USER!!!:!!!SET POSTGRES_PASSWORD!!!@postgres:5432/colin_mcfaul
+
+
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+
+# Celery
+# ------------------------------------------------------------------------------
+CELERY_BROKER_URL=redis://localhost:6379/0
+# Flower
+CELERY_FLOWER_USER=YdGPSIUUFxjXydEQpQYveJZCpMqBfYJy
+CELERY_FLOWER_PASSWORD=K9NLD4BtueeioxSmlR0LOpESWZh2n1RRh0P16ftikqoFom2dt3TIGH0TN0t1c5nO
+
+
+
+

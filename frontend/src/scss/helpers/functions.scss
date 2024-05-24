@@ -1,0 +1,36 @@
+// =========
+// Functions
+// =========
+
+// Colors
+// ======
+
+@use "sass:math";
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+@function map-set($map, $key, $value) {
+  $new: ($key: $value);
+  @return map-merge($map, $new);
+}
+
+// Px to rem
+// Usage font-size: rem(24px);
+@function rem($pixels, $context: 16px) {
+
+    @if (unitless($pixels)) {
+      $pixels: $pixels * 1px;
+    }
+
+    @if (unitless($context)) {
+      $context: $context * 1px;
+    }
+
+    @return math.div($pixels, $context) * 1rem;
+}
