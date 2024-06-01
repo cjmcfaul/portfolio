@@ -1,7 +1,4 @@
-FROM python:3.10 as python
-
-# Python build stage
-FROM python as python-build-stage
+FROM python:3.10 as python-build-stage
 
 ARG BUILD_ENVIRONMENT=production
 
