@@ -1,4 +1,4 @@
-FROM python:3.11.5-slim-bullseye as python
+FROM python:3.10 as python
 
 # Python build stage
 FROM python as python-build-stage
