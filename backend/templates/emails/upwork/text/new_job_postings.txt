@@ -1,0 +1,8 @@
+{{ feed.name }}
+
+{% for job in jobs %}
+{{ job.title }}
+{{ job.content }}
+{{ job.url }}
+
+{% endfor %}

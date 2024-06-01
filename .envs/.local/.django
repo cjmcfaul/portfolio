@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 USE_DOCKER=yes
 IPYTHONDIR=/app/.ipython
-DATABASE_URL=postgres://!!!SET POSTGRES_USER!!!:!!!SET POSTGRES_PASSWORD!!!@postgres:5432/colin_mcfaul
+DATABASE_URL=postgres://oaTmZxGFbySxaaRkENMNHgNeYQJGrZYS:6tYBSVwAlEaR5ahXDucX8iSKDCu9Zln75Hfog94FktzENV127PqOXjo76bFHxVj3@postgres:5432/colin_mcfaul
 
 
 # Redis

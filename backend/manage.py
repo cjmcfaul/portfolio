@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     # This allows easy placement of apps within the interior
     # colin_mcfaul directory.
-    current_path = Path(__file__).parent.resolve()
+    current_path = Path(__file__).parent.parent.resolve()
     sys.path.append(str(current_path / "apps"))
 
     execute_from_command_line(sys.argv)

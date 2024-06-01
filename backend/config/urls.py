@@ -9,6 +9,9 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("projects/", TemplateView.as_view(template_name="pages/projects.html"), name="projects"),
+    path("resume/", TemplateView.as_view(template_name="pages/resume.html"), name="resume"),
+    path("contact/", TemplateView.as_view(template_name="pages/contact.html"), name="contact"),
     path("about/", TemplateView.as_view(template_name="pages/about.html"), name="about"),
     # User management
     path("users/", include("apps.users.urls", namespace="users")),

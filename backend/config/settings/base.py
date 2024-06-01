@@ -89,6 +89,8 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    "apps.ping",
+    "apps.upwork",
     "apps.users",
     # Your stuff: custom apps go here
 ]
