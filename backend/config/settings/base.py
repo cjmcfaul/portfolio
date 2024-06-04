@@ -78,11 +78,6 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    "crispy_forms",
-    "crispy_bootstrap5",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
     "django_celery_beat",
     "django_htmx",
     "webpack_loader",
@@ -204,9 +199,6 @@ TEMPLATES = [
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
-# http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
-CRISPY_TEMPLATE_PACK = "bootstrap5"
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 # FIXTURES
 # ------------------------------------------------------------------------------
@@ -300,27 +292,7 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CELERY_WORKER_SEND_TASK_EVENTS = True
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std-setting-task_send_sent_event
 CELERY_TASK_SEND_SENT_EVENT = True
-# django-allauth
-# ------------------------------------------------------------------------------
-ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_EMAIL_REQUIRED = True
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_USERNAME_REQUIRED = False
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "apps.users.adapters.AccountAdapter"
-# https://django-allauth.readthedocs.io/en/latest/forms.html
-ACCOUNT_FORMS = {"signup": "apps.users.forms.UserSignupForm"}
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "apps.users.adapters.SocialAccountAdapter"
-# https://django-allauth.readthedocs.io/en/latest/forms.html
-SOCIALACCOUNT_FORMS = {"signup": "apps.users.forms.UserSocialSignupForm"}
+
 # django-webpack-loader
 # ------------------------------------------------------------------------------
 WEBPACK_LOADER = {
