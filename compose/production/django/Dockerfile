@@ -1,4 +1,9 @@
-FROM python:latest as python-build-stage
+
+# define an alias for the specific python version used in this file.
+FROM python:3.11 as python
+
+# Python build stage
+FROM python as python-build-stage
 
 ARG BUILD_ENVIRONMENT=production
 
