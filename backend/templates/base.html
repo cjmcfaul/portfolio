@@ -1,8 +1,5 @@
-
 {% load static i18n %}
-
-    {% load django_htmx %}
-    {% load render_bundle from webpack_loader %}
+{% load django_htmx %}
 
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
@@ -26,8 +23,8 @@
 <!-- This file stores project-specific CSS -->
   <link href="{% static 'css/project.css' %}" rel="stylesheet" />
   {% if WEBPACK_ENABLED %}
-  {% render_bundle 'vendors' 'css' %}
-  {% render_bundle 'main' 'css' %}
+    {% render_bundle 'vendors' 'css' %}
+    {% render_bundle 'main' 'css' %}
   {% else %}
     <link href="{% static 'vendors.css' %}" rel="stylesheet" />
     <link href="{% static 'main.css' %}" rel="stylesheet" />
@@ -89,17 +86,17 @@
 
 <!-- Vendor dependencies bundled as one file -->
   {% if WEBPACK_ENABLED %}
-  {% render_bundle 'vendors' 'js' %}
+    {% render_bundle 'vendors' 'js' %}
   {% else %}
-  <script src="{% static 'vendors.bundle.js' %}"></script>
+    <script src="{% static 'vendors.bundle.js' %}"></script>
   {% endif %}
 
 <!-- place project specific Javascript in this file -->
 
-{% if WEBPACK_ENABLED %}
-  {% render_bundle 'main' 'js' %}
+  {% if WEBPACK_ENABLED %}
+    {% render_bundle 'main' 'js' %}
   {% else %}
-  <script src="{% static 'main.bundle.js' %}"></script>
+    <script src="{% static 'main.bundle.js' %}"></script>
   {% endif %}
 
 {% endblock javascript %}
