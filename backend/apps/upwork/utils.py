@@ -85,7 +85,8 @@ class RSSJobFeed:
         return response.entries
 
     def send_jobs_email(self):
-        subject = f"{self.job_feed.name}"
+        formatted_time = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+        subject = f"{self.job_feed.name} - {formatted_time }"
         data = {
             "feed": self.job_feed,
             "jobs": self.new_jobs,
