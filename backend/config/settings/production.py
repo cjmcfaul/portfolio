@@ -110,13 +110,11 @@ LOGGING = {
             "formatter": "verbose",
         }
     },
-    "root": {"level": "INFO", "handlers": ["console"]},
+    "root": {
+        "level": "INFO",
+        "handlers": ["console"]
+    },
     "loggers": {
-        '': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
         "django.db.backends": {
             "level": "ERROR",
             "handlers": ["console"],
