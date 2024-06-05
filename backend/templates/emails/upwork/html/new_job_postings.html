@@ -1,12 +1,13 @@
 {% extends 'emails/base.html' %}
 
+{% load markdown_extras %}
+
 {% block title %}New Upwork Jobs{% endblock title %}
 
 {% block content %}
   <h2>{{ feed.name }}</h2>
   {% for job in jobs %}
     <h3>{{ job.title }}</h3>
-    <p>{{ job.content }}</p>
-    <a href="{{ job.url }}">View Posting</a>
+    <p>{{ job.content|markdown }}</p>
   {% endfor %}
 {% endblock content %}

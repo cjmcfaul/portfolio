@@ -1,10 +1,12 @@
 import re
+import markdown
 
 import feedparser
 from datetime import datetime
 
 from django.utils import timezone
 from django.core.mail import send_mail
+from django.utils.safestring import mark_safe
 from django.template.loader import render_to_string
 
 
