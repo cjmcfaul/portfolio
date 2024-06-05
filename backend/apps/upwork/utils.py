@@ -115,6 +115,7 @@ class RSSJobFeed:
         if len(self.new_jobs) > 0:
             self.send_jobs_email()
             self.job_feed.last_polled = timezone.now()
+            self.job_feed.save()
             return True
 
         return False
