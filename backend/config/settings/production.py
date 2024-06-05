@@ -113,7 +113,7 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
     "loggers": {
         '': {
-            'handlers': ['console', 'syslog', 'mail_admins', 'sentry'],
+            'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': False,
         },
