@@ -9,6 +9,7 @@ django-celery-beat==2.5.0  # https://github.com/celery/django-celery-beat
 flower==2.0.1  # https://github.com/mher/flower
 feedparser==6.0.11 # https://feedparser.readthedocs.io/en/latest/introduction.html
 Markdown==3.6 #  https://python-markdown.github.io/
+openai==1.31.1 #  https://platform.openai.com/docs/api-reference/introduction
 
 # Django
 # ------------------------------------------------------------------------------

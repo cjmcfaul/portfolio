@@ -1,13 +1,94 @@
 import re
-import markdown
-
+import time
 import feedparser
 from datetime import datetime
+from openai import OpenAI
 
+from django.conf import settings
 from django.utils import timezone
 from django.core.mail import send_mail
-from django.utils.safestring import mark_safe
 from django.template.loader import render_to_string
+
+
+class UpworkJobAssistant:
+
+    def __init__(self, job_feed, api_key=None, project_id=None):
+        self.job_feed = job_feed
+        self.api_key = api_key or settings.OPEN_AI_API_KEY
+        self.project_id = project_id or settings.OPEN_AI_PROJECT_ID
+        self.client = OpenAI(
+            api_key=self.api_key,
+            project=self.project_id,
+        )
+        self.assistant = self.get_or_create_assistant()
+
+    def get_or_create_assistant(self):
+        if self.job_feed.assistant_id:
+            return self.get_assistant()
+
+        assistant = self.create_assistant()
+        self.job_feed.assistant_id = assistant.id
+        return assistant
+
+    def create_assistant(self):
+        return self.client.beta.assistants.create(
+            instructions=self.job_feed.assistant_instructions,
+            name=f"{self.job_feed.name} Assistant",
+            model="gpt-3.5-turbo",
+        )
+
+    def get_assistant(self):
+        return self.client.beta.assistants.retrieve(
+            self.job_feed.assistant_id
+        )
+
+    def create_thread(self):
+        return self.client.beta.threads.create()
+
+    def create_message(self, thread, content):
+        return self.client.beta.threads.messages.create(
+            thread.id,
+            role="user",
+            content=content,
+        )
+
+    def create_thread_and_run(self, content):
+        my_run = self.client.beta.threads.create_and_run(
+            assistant_id=self.assistant.id,
+            thread={
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": content
+                    }
+                ]
+            },
+            max_completion_tokens=50,
+        )
+        success = False
+        while my_run.status in ["queued", "in_progress"]:
+            keep_retrieving_run = self.client.beta.threads.runs.retrieve(
+                thread_id=my_run.thread_id,
+                run_id=my_run.id
+            )
+
+            if keep_retrieving_run.status == "completed":
+
+                # Step 6: Retrieve the Messages added by the Assistant to the Thread
+                all_messages = self.client.beta.threads.messages.list(
+                    thread_id=my_run.thread_id
+                )
+
+                assistant_rep = all_messages.data[0].content[0].text.value
+                print(assistant_rep)
+                if assistant_rep != 'no':
+                    success = True
+                break
+            elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
+                pass
+            else:
+                break
+        return success
 
 
 class RSSJobFeed:
@@ -67,6 +148,13 @@ class RSSJobFeed:
             **self.parse_country(content)
         }
 
+    def validate_with_open_ai(self, job_data):
+        if settings.OPEN_AI_API_KEY:
+            assistant = UpworkJobAssistant(job_feed=self.job_feed)
+            content = f"Reply 'no' if I do not meet the qualifications for this job.\n\n {job_data['content']}"
+            return assistant.create_thread_and_run(content=content)
+        return True
+
     def job_posting_is_valid(self, job_data):
         if job_data.get('hourly_high'):
             if job_data['hourly_high'] < 60:
@@ -74,6 +162,11 @@ class RSSJobFeed:
         if job_data.get('budget'):
             if job_data['budget'] < 3000:
                 return False
+
+        ai_valid = self.validate_with_open_ai(job_data=job_data)
+        print(ai_valid)
+        if not ai_valid:
+            return False
 
         return True
 

@@ -5,7 +5,7 @@
 {% block title %}New Upwork Jobs{% endblock title %}
 
 {% block content %}
-  <h2>{{ feed.name }}</h2>
+  <h2>{{ feed.name }} ({{ jobs|length }})</h2>
   {% for job in jobs %}
     <h3>{{ job.title }}</h3>
     <p>{{ job.content|markdown }}</p>

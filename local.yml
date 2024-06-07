@@ -19,6 +19,7 @@ services:
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
+      - ./.envs/.local/.private
     ports:
       - '8000:8000'
     command: /start
@@ -96,6 +97,6 @@ services:
       # http://jdlm.info/articles/2016/03/06/lessons-building-node-app-docker.html
       - /app/node_modules
     command: npm run dev
-    
+
     ports:
       - '3000:3000'

@@ -299,3 +299,5 @@ WEBPACK_LOADER = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+OPEN_AI_API_KEY = env("OPEN_AI_API_KEY", default=None)
+OPEN_AI_PROJECT_ID = env("OPEN_AI_PROJECT_ID", default=None)
